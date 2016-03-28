@@ -14,10 +14,25 @@
 #   under the License.
 #
 
+galaxy_info:
+  author: redhat-openstack
+  description: Common tasks across WeIRDO roles
+  company: Red Hat
+  license: Apache2
+  min_ansible_version: 2.0.1
+  platforms:
+    - name: EL
+      versions:
+        - all
+  categories:
+    - cloud
+    - python
+    - development
+    - openstack
+
 # Include vars and handlers from the ci environment provisioner.
 # Roles from ci environment provisioners do not do anything unless an action
 # is passed as a parameter.
-
 dependencies:
   - role: "ci-centos"
     when: ansible_local.ci.facts.ci_environment is defined and ansible_local.ci.facts.ci_environment == "ci-centos"
