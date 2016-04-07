@@ -82,3 +82,5 @@ debug_commands:
     command: "yum repolist -v"
   rpm_packages:
     command: "rpm -qa"
+  uname:
+    command: "uname -a"
