@@ -52,6 +52,8 @@ debug_commands:
     command: "fdisk -l"
   getenforce:
     command: "getenforce"
+  hosts:
+    command: "cat /etc/hosts"
   iptables:
     command: "iptables -vnL"
   iptables_nat:
