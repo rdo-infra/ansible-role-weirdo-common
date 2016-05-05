@@ -30,9 +30,3 @@ galaxy_info:
     - development
     - openstack
 
-# Include vars and handlers from the ci environment provisioner.
-# Roles from ci environment provisioners do not do anything unless an action
-# is passed as a parameter.
-dependencies:
-  - role: "ci-centos"
-    when: ansible_local.ci.facts.ci_environment is defined and ansible_local.ci.facts.ci_environment == "ci-centos"
