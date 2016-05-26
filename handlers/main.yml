@@ -28,10 +28,6 @@
 - name: Ensure global logs are recovered
   include: ../../common/tasks/logs.yml
 
-- name: Ensure ci nodes are released
-  include: ../../ci-centos/tasks/release.yml
-  when: ansible_local.ci.facts.ci_environment is defined and ansible_local.ci.facts.ci_environment == "ci-centos"
-
 - name: Fail playbook execution
   fail:
     msg: "A task notified that the playbook execution should be failed"
