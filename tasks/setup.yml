@@ -34,14 +34,8 @@
 
 # CentOS doesn't come provisioned with the hostname and hostname fqdn configured
 # in /etc/hosts, this can be a problem for things like rabbitmq.
-- name: Ensure the short hostname is configured in /etc/hosts
+- name: Ensure the hostname and fqdn is configured in /etc/hosts
   lineinfile:
     dest: "/etc/hosts"
-    line: "127.0.0.1 {{ ansible_hostname }}"
-    state: present
-
-- name: Ensure the hostname fqdn is configured in /etc/hosts
-  lineinfile:
-    dest: "/etc/hosts"
-    line: "127.0.0.1 {{ ansible_fqdn }}"
+    line: "127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }}"
     state: present
