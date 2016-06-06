@@ -1,5 +1,5 @@
-# UUID          Group Name
-False 	Non-Interactive Users
-0b99542883aeb0c11a9bc52ad62bd5bfae10392e       	rdo-infra/ansible-role-weirdo-common-core
-f04fb01209897e7fe5860e2b57cf82f847021949        	rdo-infra/ansible-role-weirdo-common-ptl
-global:Registered-Users		Registered Users
+# UUID                                  	Group Name
+#
+4177e5526e4e62c131d79af2acfcc1ae5b466e90	rdo-infra/weirdo-ptl
+62db9f9d9c87a3ccae40a5bf9ad52a18234f8494	rdo-infra/weirdo-core
+global:Registered-Users                 	Registered Users
