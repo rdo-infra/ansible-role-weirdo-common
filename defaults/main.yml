@@ -27,7 +27,6 @@ base_packages:
 debug_packages:
   - net-tools
   - lsof
-  - tcpdump
   - sysstat
   - psmisc
 
