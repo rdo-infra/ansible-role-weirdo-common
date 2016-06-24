@@ -14,14 +14,15 @@
 #   under the License.
 #
 
-- include: packages.yml
-  when: action is not defined
+- block:
+    # Need to use curl because the get_url module doesn't follow redirects
+    - name: Setup delorean repository
+      command: curl -L {{ delorean_url }} -o /etc/yum.repos.d/delorean.repo
 
-- include: setup.yml
-  when: action is not defined
-
-- include: repositories.yml
-  when: action is not defined
-
-- include: logs.yml
-  when: action is defined and action == "logs"
+    - name: Setup delorean-deps repository
+      command: curl -L {{ delorean_deps_url }} -o /etc/yum.repos.d/delorean-deps.repo
+  vars:
+    task: "tasks/repositories.yml"
+  rescue:
+    - name: Failure occurred, executing rescue
+      include: roles/common/tasks/rescue.yml
