@@ -30,6 +30,11 @@ debug_packages:
   - sysstat
   - psmisc
 
+# Delorean repository (OpenStack) release
+openstack_release: "master"
+delorean_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+delorean_deps_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+
 # Jenkins environment vars used in tasks/templates
 job_name: "{{ lookup('env', 'JOB_NAME')|default('nojob') }}"
 build_number: "{{ lookup('env', 'BUILD_NUMBER')|default('nobuild') }}"
