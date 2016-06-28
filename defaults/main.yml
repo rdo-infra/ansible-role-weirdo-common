@@ -30,6 +30,7 @@ debug_packages:
   - tcpdump
   - sysstat
   - psmisc
+  - yum-utils
 
 # Delorean repository (OpenStack) release
 openstack_release: "master"
@@ -91,3 +92,5 @@ debug_commands:
     command: "rpm -qa"
   uname:
     command: "uname -a"
+  rdo-trunk-deps-end:
+    command: "repoquery --disablerepo='*' --enablerepo='delorean-*-testing' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
