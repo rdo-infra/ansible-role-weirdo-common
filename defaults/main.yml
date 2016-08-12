@@ -88,7 +88,7 @@ debug_commands:
   repolist:
     command: "yum repolist -v"
   rpm_packages:
-    command: "rpm -qa"
+    command: "rpm -qa | sort"
   uname:
     command: "uname -a"
   rdo-trunk-deps-end:
