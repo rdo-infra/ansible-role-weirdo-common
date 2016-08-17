@@ -22,6 +22,11 @@
     - name: Setup delorean-deps repository
       command: curl -L {{ delorean_deps_url }} -o /etc/yum.repos.d/delorean-deps.repo
 
+    - name: Enable CentOS virt SIG for qemu-kvm-ev
+      package:
+        name: "centos-release-virt-common"
+        state: "latest"
+
     - name: Get list of rpm builds in delorean-deps
       shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
       ignore_errors: true
