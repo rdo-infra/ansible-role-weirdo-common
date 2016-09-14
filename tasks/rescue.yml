@@ -15,7 +15,7 @@
 #
 
 - debug:
-    msg: "Failure occured in {{ role_path }}/{{ task }}"
+    msg: "Failure occured in {{ role_path }}/{{ task }}"
 
 - command: "/bin/true"
   notify:

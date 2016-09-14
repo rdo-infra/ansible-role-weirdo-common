@@ -16,7 +16,7 @@
 
 - name: Create log folder to centralize logs in
   file:
-    path: "{{ log_destination }}"
+    path: "{{ log_destination }}"
     state: "directory"
     recurse: "yes"
 

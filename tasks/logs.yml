@@ -18,7 +18,7 @@
   shell: "{{ item.value.command }} >{{ log_destination }}/{{ item.key }}.txt"
   args:
     creates: "{{ log_destination }}/{{ item.key }}.txt"
-  with_dict: "{{ debug_commands }}"
+  with_dict: "{{ debug_commands }}"
   ignore_errors: True
 
 - name: Copy existing logs to central folder
@@ -37,7 +37,7 @@
 - name: Convert files to .txt (web mime type)
   shell: |
     for file in $(find {{ log_destination }} -name "*.{{ item }}"); do
-      mv $file ${file/.{{ item }}/.txt}
+      mv $file ${file/.{{ item }}/.txt}
     done
   with_items:
     - log
