@@ -35,6 +35,7 @@ debug_packages:
 openstack_release: "master"
 delorean_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
 delorean_deps_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+release_rpm: false
 
 # Jenkins environment vars used in tasks/templates
 job_name: "{{ lookup('env', 'JOB_NAME')|default('nojob') }}"

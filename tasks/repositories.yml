@@ -25,9 +25,24 @@
     - name: Get list of rpm builds in delorean-deps
       shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
       ignore_errors: true
+  when: not release_rpm
   vars:
     task: "tasks/repositories.yml"
     repoquery_cmd: "repoquery --plugins --disablerepo='*' --enablerepo='delorean*' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
+  rescue:
+    - name: Failure occurred, executing rescue
+      include: roles/common/tasks/rescue.yml
+
+- block:
+    - name: Enable release rpm repository
+      yum:
+        name: "{{ release_rpm }}"
+        state: "present"
+      retries: "3"
+      delay: "20"
+  when: release_rpm
+  vars:
+    task: "tasks/repositories.yml"
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml
