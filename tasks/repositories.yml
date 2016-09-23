@@ -16,11 +16,11 @@
 
 - block:
     # Need to use curl because the get_url module doesn't follow redirects
-    - name: Setup delorean repository
-      command: curl -L {{ delorean_url }} -o /etc/yum.repos.d/delorean.repo
-
-    - name: Setup delorean-deps repository
-      command: curl -L {{ delorean_deps_url }} -o /etc/yum.repos.d/delorean-deps.repo
+    - name: Setup trunk repositories
+      get_url:
+        url: "{{ item }}"
+        dest: "/etc/yum.repos.d/"
+      with_items: trunk_repositories
 
     - name: Get list of rpm builds in delorean-deps
       shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
