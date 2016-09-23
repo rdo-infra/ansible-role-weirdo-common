@@ -15,13 +15,24 @@
 #
 
 - block:
-    - include: "repositories/trunk.yml"
-      when: not stable_repositories
+    - name: Setup stable repositories
+      yum:
+        name: "{{ item }}"
+        state: "present"
+      retries: "3"
+      delay: "20"
+      with_items: stable_repositories
 
-    - include: "repositories/stable.yml"
-      when: stable_repositories
+    - name: Ensure the stable repository is enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}
+
+    - name: Ensure only the stable repository is enabled
+      command: yum-config-manager --disable {{ item }}
+      with_items:
+        - "openstack-{{ openstack_release }}-testing"
+        - "rdo-trunk-{{ openstack_release }}-tested"
   vars:
-    task: "tasks/repositories.yml"
+    task: "tasks/repositories/stable.yml"
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml

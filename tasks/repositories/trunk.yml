@@ -15,13 +15,18 @@
 #
 
 - block:
-    - include: "repositories/trunk.yml"
-      when: not stable_repositories
+    - name: Setup trunk repositories
+      get_url:
+        url: "{{ item }}"
+        dest: "/etc/yum.repos.d/"
+      with_items: trunk_repositories
 
-    - include: "repositories/stable.yml"
-      when: stable_repositories
+    - name: Get list of rpm builds in delorean-deps
+      shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
+      ignore_errors: true
   vars:
-    task: "tasks/repositories.yml"
+    task: "tasks/repositories/trunk.yml"
+    repoquery_cmd: "repoquery --plugins --disablerepo='*' --enablerepo='delorean*' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml
