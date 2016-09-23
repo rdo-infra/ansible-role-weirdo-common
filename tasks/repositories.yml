@@ -15,7 +15,6 @@
 #
 
 - block:
-    # Need to use curl because the get_url module doesn't follow redirects
     - name: Setup trunk repositories
       get_url:
         url: "{{ item }}"
@@ -25,7 +24,7 @@
     - name: Get list of rpm builds in delorean-deps
       shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
       ignore_errors: true
-  when: not release_rpm
+  when: not stable_repositories
   vars:
     task: "tasks/repositories.yml"
     repoquery_cmd: "repoquery --plugins --disablerepo='*' --enablerepo='delorean*' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
@@ -34,13 +33,23 @@
       include: roles/common/tasks/rescue.yml
 
 - block:
-    - name: Enable release rpm repository
+    - name: Setup stable repositories
       yum:
-        name: "{{ release_rpm }}"
+        name: "{{ item }}"
         state: "present"
       retries: "3"
       delay: "20"
-  when: release_rpm
+      with_items: stable_repositories
+
+    - name: Ensure the stable repository is enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}
+
+    - name: Ensure only the stable repository is enabled
+      command: yum-config-manager --disable {{ item }}
+      with_items:
+        - "openstack-{{ openstack_release }}-testing"
+        - "rdo-trunk-{{ openstack_release }}-tested"
+  when: stable_repositories
   vars:
     task: "tasks/repositories.yml"
   rescue:
