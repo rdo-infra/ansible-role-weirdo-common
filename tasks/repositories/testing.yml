@@ -15,32 +15,24 @@
 #
 
 - block:
-    - name: Including trunk repository setup
-      include: "repositories/trunk.yml"
-      when:
-        - not stable_repositories
-        - not testing_repositories
+    - name: Setup testing repositories
+      yum:
+        name: "{{ item }}"
+        state: "present"
+      retries: "3"
+      delay: "20"
+      with_items: testing_repositories
 
-    - name: Including stable repository setup
-      include: "repositories/stable.yml"
-      when:
-        - stable_repositories
-        - not testing_repositories
+    - name: Ensure the testing repository is enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
 
-    - name: Including testing repository setup
-      include: "repositories/testing.yml"
-      when:
-        - testing_repositories
-        - not stable_repositories
-
-    - name: Incompatible repository setup
-      fail:
-        msg: "You can't specify both testing and stable repositories."
-      when:
-        - testing_repositories
-        - stable_repositories
+    - name: Ensure only the testing repository is enabled
+      command: yum-config-manager --disable {{ item }}
+      with_items:
+        - "openstack-{{ openstack_release }}"
+        - "rdo-trunk-{{ openstack_release }}-tested"
   vars:
-    task: "tasks/repositories.yml"
+    task: "tasks/repositories/testing.yml"
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml
