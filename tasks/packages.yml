@@ -15,14 +15,6 @@
 #
 
 - block:
-    - name: Update all packages
-      yum:
-        update_cache: "yes"
-        name: "*"
-        state: "latest"
-      retries: "3"
-      delay: "20"
-
     - name: Install base packages
       yum:
         name: "{{ item }}"
