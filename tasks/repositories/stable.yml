@@ -21,7 +21,7 @@
         state: "present"
       retries: "3"
       delay: "20"
-      with_items: stable_repositories
+      with_items: "{{ stable_repositories }}"
 
     - name: Ensure the stable repository is enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}
