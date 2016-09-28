@@ -35,9 +35,7 @@ debug_packages:
 openstack_release: "master"
 delorean_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
 delorean_deps_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
-trunk_repositories:
-  - "{{ delorean_url }}"
-  - "{{ delorean_deps_url }}"
+trunk_repositories: "{{ delorean_url }},{{ delorean_deps_url }}"
 stable_repositories: false
 testing_repositories: false
 
