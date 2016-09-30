@@ -47,5 +47,5 @@
 
 - name: Compress all files
   shell: |
-    find {{ log_destination }} -type f -name "*.txt" -execdir gzip -9 {} \+
+    find {{ log_destination }} -type f -name "*.txt" -execdir gzip -f -9 {} \+
   ignore_errors: True
