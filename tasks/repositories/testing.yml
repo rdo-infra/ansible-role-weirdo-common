@@ -26,9 +26,16 @@
     - name: Ensure the testing repository is enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
 
+    # If we're testing an unreleased version, the stable repository will be in
+    # the release RPM but not yet available on the mirrors.
+    - name: Verify if the stable repository is available
+      command: yum --disablerepo="*" --enablerepo="openstack-{{ openstack_release }}" list available
+      ignore_errors: "true"
+      register: stable_available
+
     - name: Ensure the stable repository is enabled if it's available
       command: yum-config-manager --enable openstack-{{ openstack_release }}
-      ignore_errors: "true"
+      when: stable_available|success
 
     - name: Ensure the trunk repository is disabled
       command: yum-config-manager --disable rdo-trunk-{{ openstack_release }}-tested
