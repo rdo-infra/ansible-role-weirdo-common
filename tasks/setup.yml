@@ -55,3 +55,45 @@
     dest: "/etc/hosts"
     line: "127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }}"
     state: present
+
+# Setup qemu-kvm nested virtualization
+# This is the hypervisor used in our tests.
+- name: Install qemu-kvm
+  yum:
+    name: "qemu-kvm"
+    state: "present"
+  retries: "3"
+  delay: "20"
+
+# Grab CPU flags from "/proc/cpuinfo" and put the result into the
+# "cpu_flags_cmd" variable.
+- name: Get cpu flags
+  command: |
+    awk -F: '/^flags/ {print $2; exit}' /proc/cpuinfo
+  register: cpu_flags_cmd
+  changed_when: false
+
+# Extract the flags into a list variable named "cpu_flags".
+- name: Set cpu flags fact
+  set_fact:
+    cpu_flags: "{{ cpu_flags_cmd.stdout.split() }}"
+
+- name: Configure KVM module for Intel nested virtualization
+  copy:
+    dest: "/etc/modprobe.d/kvm.conf"
+    content: |
+      options kvm_intel nested=1
+  when:
+    - "'Intel' in {{ ansible_processor }}"
+    - "'vmx' in {{ cpu_flags }}"
+  register: nested_virtualization
+
+- name: Configure KVM module for AMD nested virtualization
+  copy:
+    dest: "/etc/modprobe.d/kvm.conf"
+    content: |
+      options kvm_amd nested=1
+  when:
+    - "'AMD' in {{ ansible_processor }}"
+    - "'svm' in {{ cpu_flags }}"
+  register: nested_virtualization
