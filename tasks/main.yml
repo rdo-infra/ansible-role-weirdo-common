@@ -14,9 +14,6 @@
 #   under the License.
 #
 
-- include: packages.yml
-  when: action is not defined
-
 - include: setup.yml
   when: action is not defined
 

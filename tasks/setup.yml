@@ -20,6 +20,22 @@
     state: "directory"
     recurse: "yes"
 
+- name: Install base packages
+  yum:
+    name: "{{ item }}"
+    state: "present"
+  with_items: "{{ base_packages }}"
+  retries: "3"
+  delay: "20"
+
+- name: Install debug packages
+  yum:
+    name: "{{ item }}"
+    state: "present"
+  with_items: "{{ debug_packages }}"
+  retries: "3"
+  delay: "20"
+
 - name: Enable sysstat
   service:
     name: "sysstat"
