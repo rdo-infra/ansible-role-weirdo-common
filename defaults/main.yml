@@ -48,6 +48,7 @@ log_destination: "{{ log_root }}/{{ job_name }}/{{ build_number }}"
 log_paths:
   - /var/log/audit
   - /etc/ansible
+  - /etc/modprobe.d
 
 debug_commands:
   cpuinfo:
