@@ -14,10 +14,10 @@
 #   under the License.
 #
 
-- include: setup.yml
+- include: repositories.yml
   when: action is not defined
 
-- include: repositories.yml
+- include: setup.yml
   when: action is not defined
 
 - include: logs.yml
