@@ -55,3 +55,49 @@
     dest: "/etc/hosts"
     line: "127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }}"
     state: present
+
+# Setup qemu-kvm nested virtualization
+# This is the hypervisor used in our tests.
+- name: Install qemu-kvm
+  yum:
+    name: "qemu-kvm"
+    state: "present"
+  retries: "3"
+  delay: "20"
+
+# Identify the processor manufacturer by looking for "Intel" or "AMD"
+# in /proc/cpuinfo.
+- name: Check if the processor is Intel based
+  command: grep -q Intel /proc/cpuinfo
+  ignore_errors: "yes"
+  register: is_intel
+  changed_when: false
+
+- name: Check if the processor is AMD based
+  command: grep -q AMD /proc/cpuinfo
+  ignore_errors: "yes"
+  register: is_amd
+  changed_when: false
+
+# Enable [nested virtualization][nested]. Set the `nested_virt` fact
+# to `true` if we have Intel processors and the `vmx` flag or we have
+# AMD processors and the `svm` flag.
+- name: set nested_virt fact
+  set_fact:
+    nested_virt: >-
+      {{ ((is_intel and 'vmx' in cpu_flags)
+      or (is_amd and 'svm' in cpu_flags))|bool }}
+
+# Configure appropriate options for the vendor-specific kvm module
+# in `/etc/modprobe.d/kvm.conf`.  This will result in either:
+#     options kvm_intel nested=1
+# Or:
+#     options kvm_adm nested=1
+# (Depending on the processor vendor)
+- name: Configure KVM module
+  copy:
+    dest: /etc/modprobe.d/kvm.conf
+    content: |
+      options kvm_intel nested=1
+      options kvm_amd nested=1
+  when: "{{ nested_virt }}"
