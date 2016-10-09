@@ -16,6 +16,23 @@
       "revId": "940b5911b6a5ca2a4b8130ef5deb71474b8d85b3",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dacfb570_6f7e70e6",
+        "filename": "tasks/setup.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 268
+      },
+      "writtenOn": "2016-10-09T12:25:14Z",
+      "side": 1,
+      "message": "It could be replaced by a lookup on ansible_processor (so avoid 1 round trip and 1 fork)",
+      "revId": "940b5911b6a5ca2a4b8130ef5deb71474b8d85b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
