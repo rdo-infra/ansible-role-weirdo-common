@@ -24,6 +24,10 @@
 - name: Ensure global logs are recovered
   include: ../../common/tasks/logs.yml
 
+- name: Ensure puppet-openstack logs are recovered
+  include: ../../puppet-openstack/tasks/logs.yml
+  when: project == "puppet-openstack"
+
 - name: Fail playbook execution
   fail:
     msg: "A task notified that the playbook execution should be failed"
