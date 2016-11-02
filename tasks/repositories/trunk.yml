@@ -30,3 +30,4 @@
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml
+      static: no
