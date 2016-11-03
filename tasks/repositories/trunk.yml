@@ -22,7 +22,9 @@
       with_items: "{{ trunk_repositories.split(',') }}"
 
     - name: Get list of rpm builds in delorean-deps
-      shell: "{{ repoquery_cmd }} >{{ log_destination }}/rdo-trunk-deps-start.txt"
+      vars:
+        logdir: "{{ weirdo_project_logdir |default('/var/log/weirdo-project') }}"
+      shell: "{{ repoquery_cmd }} >{{ logdir }}/rdo-trunk-deps-start.txt"
       ignore_errors: true
   vars:
     task: "tasks/repositories/trunk.yml"

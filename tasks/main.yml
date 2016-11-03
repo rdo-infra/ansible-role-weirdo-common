@@ -21,7 +21,3 @@
 - include: setup.yml
   when: action is not defined
   static: no
-
-- include: logs.yml
-  when: action is defined and action == "logs"
-  static: no

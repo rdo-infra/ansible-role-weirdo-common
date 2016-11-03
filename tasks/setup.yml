@@ -14,12 +14,6 @@
 #   under the License.
 #
 
-- name: Create log folder to centralize logs in
-  file:
-    path: "{{ log_destination }}"
-    state: "directory"
-    recurse: "yes"
-
 - name: Install base packages
   yum:
     name: "{{ item }}"
