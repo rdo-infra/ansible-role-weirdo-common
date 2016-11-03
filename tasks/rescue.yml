@@ -19,7 +19,6 @@
 
 - command: "/bin/true"
   notify:
-    - "Ensure global logs are recovered"
     - "Ensure puppet-openstack logs are recovered"
     - "Fail playbook execution"
 

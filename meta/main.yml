@@ -15,11 +15,11 @@
 #
 
 galaxy_info:
-  author: redhat-openstack
+  author: rdo-infra
   description: Common tasks across WeIRDO roles
   company: Red Hat
   license: Apache2
-  min_ansible_version: 2.0.1
+  min_ansible_version: 2.2.0.0
   platforms:
     - name: EL
       versions:
@@ -29,4 +29,3 @@ galaxy_info:
     - python
     - development
     - openstack
-
