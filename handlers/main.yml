@@ -21,12 +21,10 @@
 # specified to go back to the roles dir (from the role calling handler)
 # Doing inter-role includes is a bit wonky.
 # See: https://github.com/ansible/ansible/issues/13818
-- name: Ensure global logs are recovered
-  include: ../../common/tasks/logs.yml
-
 - name: Ensure puppet-openstack logs are recovered
   include: ../../puppet-openstack/tasks/logs.yml
   when: project == "puppet-openstack"
+  static: no
 
 - name: Fail playbook execution
   fail:
