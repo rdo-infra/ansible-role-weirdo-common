@@ -28,7 +28,7 @@
       ignore_errors: true
   vars:
     task: "tasks/repositories/trunk.yml"
-    repoquery_cmd: "repoquery --plugins --disablerepo='*' --enablerepo='delorean*' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
+    repoquery_cmd: "repoquery --plugins --disablerepo='*' --enablerepo='delorean' --enablerepo='delorean*testing' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
   rescue:
     - name: Failure occurred, executing rescue
       include: roles/common/tasks/rescue.yml
