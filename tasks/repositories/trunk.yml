@@ -21,6 +21,10 @@
         dest: "/etc/yum.repos.d/"
       with_items: "{{ trunk_repositories.split(',') }}"
 
+    - name: Enable the pending repository if it should be enabled
+      command: yum-config-manager --enable delorean-{{ openstack_release }}-pending
+      when: pending_repository |bool
+
     - name: Get list of rpm builds in delorean-deps
       vars:
         logdir: "{{ weirdo_logdir |default('/var/log/weirdo') }}"

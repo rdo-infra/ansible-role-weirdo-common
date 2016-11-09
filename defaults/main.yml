@@ -38,6 +38,7 @@ delorean_deps_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/
 trunk_repositories: "{{ delorean_url }},{{ delorean_deps_url }}"
 stable_repositories: false
 testing_repositories: false
+pending_repository: false
 
 # Jenkins environment vars used in tasks/templates
 job_name: "{{ lookup('env', 'JOB_NAME')|default('nojob') }}"

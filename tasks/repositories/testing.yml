@@ -23,8 +23,12 @@
       delay: "20"
       with_items: "{{ testing_repositories.split(',') }}"
 
-    - name: Ensure the testing repository is enabled
+    - name: Enable the testing repository
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
+
+    - name: Enable the pending repository if it should be enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}-pending
+      when: pending_repository |bool
 
     # If we're testing an unreleased version, the stable repository will be in
     # the release RPM but not yet available on the mirrors.
@@ -33,7 +37,7 @@
       ignore_errors: "true"
       register: stable_available
 
-    - name: Ensure the stable repository is enabled if it's available
+    - name: Enable the stable repository if it's available
       command: yum-config-manager --enable openstack-{{ openstack_release }}
       when: stable_available|success
 
