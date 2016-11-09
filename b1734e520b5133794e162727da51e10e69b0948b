@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5adbc538_dc0f442d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-09T23:21:36Z",
+      "side": 1,
+      "message": "all merged, RPMs built and pushed, Ocata folder created:\n\nhttp://rdoproject.org/repos/openstack-ocata/rdo-release-ocata.rpm\n\nTODO automate CBS builds and move publishing location from repos.fedorapeople.org to rdoproject.org website proper",
+      "revId": "b1734e520b5133794e162727da51e10e69b0948b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
