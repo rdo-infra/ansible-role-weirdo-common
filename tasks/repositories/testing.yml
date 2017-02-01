@@ -21,7 +21,7 @@
         state: "present"
       retries: "3"
       delay: "20"
-      with_items: "{{ testing_repositories.split(',') }}"
+      with_items: "{{ testing_repositories.split(',') }}"
 
     - name: Enable the testing repository
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
