@@ -23,14 +23,24 @@
       delay: "20"
       with_items: "{{ stable_repositories.split(',') }}"
 
-    - name: Ensure the stable repository is enabled
-      command: yum-config-manager --enable openstack-{{ openstack_release }}
+    - name: Enable the testing repository if it should be enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
+      when: testing_repository or pending_repository
 
-    - name: Ensure only the stable repository is enabled
-      command: yum-config-manager --disable {{ item }}
-      with_items:
-        - "openstack-{{ openstack_release }}-testing"
-        - "rdo-trunk-{{ openstack_release }}-tested"
+    - name: Enable the pending repository if it should be enabled
+      command: yum-config-manager --enable openstack-{{ openstack_release }}-pending
+      when: pending_repository
+
+    # If we're testing an unreleased version, the stable repository will be in
+    # the release RPM but not yet available on the mirrors.
+    - name: Verify if the stable repository is available
+      command: yum --disablerepo="*" --enablerepo="openstack-{{ openstack_release }}" list available
+      ignore_errors: "true"
+      register: stable_available
+
+    - name: Ensure the stable repository is enabled if it's available
+      command: yum-config-manager --enable openstack-{{ openstack_release }}
+      when: stable_available|success
   vars:
     task: "tasks/repositories/stable.yml"
   rescue:

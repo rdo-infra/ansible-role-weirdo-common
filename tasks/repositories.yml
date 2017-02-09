@@ -15,33 +15,19 @@
 #
 
 - block:
+    # Trunk always has testing enabled by default
+    # -pending can be optionally enabled
     - name: Including trunk repository setup
       include: "repositories/trunk.yml"
-      when:
-        - not stable_repositories
-        - not testing_repositories
+      when: not stable_repositories
       static: no
 
+    # Stable can be by itself
+    # -pending or -testing can optionally be enabled
     - name: Including stable repository setup
       include: "repositories/stable.yml"
-      when:
-        - stable_repositories
-        - not testing_repositories
+      when: stable_repositories != false
       static: no
-
-    - name: Including testing repository setup
-      include: "repositories/testing.yml"
-      when:
-        - testing_repositories
-        - not stable_repositories
-      static: no
-
-    - name: Incompatible repository setup
-      fail:
-        msg: "You can't specify both testing and stable repositories."
-      when:
-        - testing_repositories
-        - stable_repositories
   vars:
     task: "tasks/repositories.yml"
   rescue:
