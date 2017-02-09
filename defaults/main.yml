@@ -37,7 +37,7 @@ delorean_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/curre
 delorean_deps_url: "http://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
 trunk_repositories: "{{ delorean_url }},{{ delorean_deps_url }}"
 stable_repositories: false
-testing_repositories: false
+testing_repository: false
 pending_repository: false
 
 # Jenkins environment vars used in tasks/templates
