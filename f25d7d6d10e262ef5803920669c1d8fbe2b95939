@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_993ebf28",
+        "filename": "tasks/repositories.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2017-02-13T20:59:49Z",
+      "side": 1,
+      "message": "To make it work with 2.2.1.0 i hat to do this:\n\nwhen: stable_repositories !\u003d false",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "f25d7d6d10e262ef5803920669c1d8fbe2b95939",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
