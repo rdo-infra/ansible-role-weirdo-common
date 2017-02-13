@@ -25,14 +25,14 @@
     - name: Including stable repository setup
       include: "repositories/stable.yml"
       when:
-        - stable_repositories
+        - stable_repositories != false
         - not testing_repositories
       static: no
 
     - name: Including testing repository setup
       include: "repositories/testing.yml"
       when:
-        - testing_repositories
+        - testing_repositories != false
         - not stable_repositories
       static: no
 
@@ -40,8 +40,8 @@
       fail:
         msg: "You can't specify both testing and stable repositories."
       when:
-        - testing_repositories
-        - stable_repositories
+        - testing_repositories != false
+        - stable_repositories != false
   vars:
     task: "tasks/repositories.yml"
   rescue:
