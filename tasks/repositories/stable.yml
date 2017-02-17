@@ -31,6 +31,9 @@
       command: yum-config-manager --enable openstack-{{ openstack_release }}-pending
       when: pending_repository
 
+    - name: Disable the mirror of RDO Trunk tested repository
+      command: yum-config-manager --disable rdo-trunk-{{ openstack_release }}-tested
+
     # If we're testing an unreleased version, the stable repository will be in
     # the release RPM but not yet available on the mirrors.
     - name: Verify if the stable repository is available
