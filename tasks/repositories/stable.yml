@@ -16,7 +16,7 @@
 
 - block:
     - name: Setup stable repositories
-      yum:
+      package:
         name: "{{ item }}"
         state: "present"
       retries: "3"

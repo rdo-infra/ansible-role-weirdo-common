@@ -15,25 +15,23 @@
 #
 
 - name: Update packages
-  yum:
+  package:
     name: "*"
     state: "latest"
   retries: "3"
   delay: "20"
 
 - name: Install base packages
-  yum:
-    name: "{{ item }}"
+  package:
+    name: "{{ base_packages }}"
     state: "present"
-  with_items: "{{ base_packages }}"
   retries: "3"
   delay: "20"
 
 - name: Install debug packages
-  yum:
-    name: "{{ item }}"
+  package:
+    name: "{{ debug_packages }}"
     state: "present"
-  with_items: "{{ debug_packages }}"
   retries: "3"
   delay: "20"
 
