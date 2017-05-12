@@ -39,6 +39,7 @@ trunk_repositories: "{{ delorean_url }},{{ delorean_deps_url }}"
 stable_repositories: false
 testing_repository: false
 pending_repository: false
+add_stable_repos: false
 
 # Jenkins environment vars used in tasks/templates
 job_name: "{{ lookup('env', 'JOB_NAME')|default('nojob') }}"

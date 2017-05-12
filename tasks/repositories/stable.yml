@@ -44,6 +44,15 @@
     - name: Ensure the stable repository is enabled if it's available
       command: yum-config-manager --enable openstack-{{ openstack_release }}
       when: stable_available|success
+
+    - name: Setup additional repositories using .repo files
+      get_url:
+        url: "{{ item }}"
+        dest: "/etc/yum.repos.d/"
+      when:
+        - add_stable_repos != false
+        - add_stable_repos != ""
+      with_items: "{{ add_stable_repos.split(',') }}"
   vars:
     task: "tasks/repositories/stable.yml"
   rescue:
