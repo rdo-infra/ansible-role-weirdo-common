@@ -14,6 +14,25 @@
 #   under the License.
 #
 
+# This provides the ability to:
+# - return trunk_repositories as a list composed of delorean_url and
+#   delorean_deps_url if it is not set and we're not using stable repositories, or
+# - return trunk_repositories as a list if it is set as a list, or
+# - return trunk_repositories as a list if it is provided as a CSV, or
+# - return an empty list
+- name: Set up trunk_repositories
+  set_fact:
+    trunk_repositories: >
+      {%- if trunk_repositories is none and not stable_repositories %}
+      {{- [delorean_url, delorean_deps_url] -}}
+      {%- elif trunk_repositories is iterable and trunk_repositories is not string %}
+      {{- trunk_repositories -}}
+      {%- elif trunk_repositories is not none %}
+      {{- trunk_repositories.split(',') -}}
+      {%- else %}
+      {{- [] -}}
+      {%- endif %}
+
 - block:
     # Trunk always has testing enabled by default
     # -pending can be optionally enabled
