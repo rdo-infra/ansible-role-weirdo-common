@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_06f163cd",
+        "filename": "defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2017-05-12T14:16:02Z",
+      "side": 1,
+      "message": "I feel like there\u0027s already too many parameters in weirdo. The more options there are, the more complicated it becomes and I really hope we can keep it as simple as we can.\n\ntrunk_repositories already exists for the purpose of installing arbitrary .repo files (and defaults to delorean_url,delorean_deps_url).\n\nCan you let me know what you think of https://review.rdoproject.org/r/6634 ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 23
+      },
+      "revId": "b26986f350d86b6b0d1510157778bdc6273b9742",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
