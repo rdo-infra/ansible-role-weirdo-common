@@ -19,7 +19,7 @@
       get_url:
         url: "{{ item }}"
         dest: "/etc/yum.repos.d/"
-      with_items: "{{ trunk_repositories.split(',') }}"
+      with_items: "{{ trunk_repositories }}"
 
     - name: Enable the pending repository if it should be enabled
       command: yum-config-manager --enable delorean-{{ openstack_release }}-pending

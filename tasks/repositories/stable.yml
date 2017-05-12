@@ -23,6 +23,12 @@
       delay: "20"
       with_items: "{{ stable_repositories.split(',') }}"
 
+    - name: Setup custom repositories
+      get_url:
+        url: "{{ item }}"
+        dest: "/etc/yum.repos.d/"
+      with_items: "{{ trunk_repositories }}"
+
     - name: Enable the testing repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
       when: testing_repository or pending_repository
