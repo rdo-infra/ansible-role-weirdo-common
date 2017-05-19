@@ -27,7 +27,7 @@
       get_url:
         url: "{{ item }}"
         dest: "/etc/yum.repos.d/"
-      with_items: "{{ trunk_repositories }}"
+      with_items: "{{ trunk_repositories_list }}"
 
     - name: Enable the testing repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
