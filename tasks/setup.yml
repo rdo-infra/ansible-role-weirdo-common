@@ -35,17 +35,30 @@
   retries: "3"
   delay: "20"
 
-- name: Enable sysstat
-  service:
-    name: "sysstat"
-    enabled: "yes"
-    state: "started"
+- name: set fact
+  shell: /usr/bin/rpm -qa sysstat --queryformat %{VERSION}
+  register: sysstat_version
 
-- name: Run sysstat every minute instead of every 10 minutes
+- name: Run sysstat every minute instead of every 10 minutes (systemd)
+  replace:
+    dest: "/usr/lib/systemd/system/sysstat-collect.timer"
+    regexp: '1'
+    replace: "10"
+  when: "{{ sysstat_version.stdout is version('10.3.1', '>=') }} "
+
+- name: Run sysstat every minute instead of every 10 minutes (cron)
   replace:
     dest: "/etc/cron.d/sysstat"
     regexp: '^\*\/10.*sa1 1 1'
     replace: "* * * * * root /usr/lib64/sa/sa1 1 1"
+  when: "{{ sysstat_version.stdout is version('10.3.1', '<') }} "
+
+- name: Enable sysstat
+  service:
+    name: "sysstat"
+    enabled: "yes"
+    daemon_reload: "yes"
+    state: "started"
 
 # CentOS doesn't come provisioned with the hostname and hostname fqdn configured
 # in /etc/hosts, this can be a problem for things like rabbitmq.
