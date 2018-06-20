@@ -22,6 +22,30 @@
       "revId": "dd0b006513939276ff8435bdcce2ca1eaafeeb97",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_e31d8067",
+        "filename": "tasks/setup.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-06-20T16:23:15Z",
+      "side": 1,
+      "message": "hmm missed this while local testing, fixing now.",
+      "parentUuid": "bab921fb_83048415",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "dd0b006513939276ff8435bdcce2ca1eaafeeb97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
