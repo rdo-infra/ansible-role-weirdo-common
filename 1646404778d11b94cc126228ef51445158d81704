@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_63573003",
+        "filename": "tasks/setup.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-06-20T16:37:13Z",
+      "side": 1,
+      "message": "After some more testing, what made it work for me was:\n\n        regexp: \u0027\\/10\u0027\n        replace: \"/1\"\n\nCan you test that and see if it matches?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "1646404778d11b94cc126228ef51445158d81704",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
