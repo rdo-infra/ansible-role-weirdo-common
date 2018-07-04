@@ -16,7 +16,13 @@
 
 base_packages:
   - deltarpm
-  - "@Development tools"
+  - gettext
+  - diffstat
+  - doxygen
+  - patch
+  - patchutils
+  - subversion
+  - systemtap
   - git
   - python-setuptools
   - wget
