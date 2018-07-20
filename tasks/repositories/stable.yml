@@ -29,6 +29,15 @@
         dest: "/etc/yum.repos.d/"
       with_items: "{{ trunk_repositories_list }}"
 
+    - name: Remove Fedora base repos
+      file:
+        path: "/etc/yum.repos.d/{{ item }}"
+        state: absent
+      with_items:
+        - "fedora.repo"
+        - "fedora-updates.repo"
+      when: ansible_distribution == "Fedora"
+
     - name: Enable the testing repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
       when: testing_repository or pending_repository

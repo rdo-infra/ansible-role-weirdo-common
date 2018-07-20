@@ -18,7 +18,7 @@ base_packages:
   - deltarpm
   - "@Development tools"
   - git
-  - python-setuptools
+  - python2-setuptools
   - wget
   - redhat-lsb-core
   - libselinux-python
