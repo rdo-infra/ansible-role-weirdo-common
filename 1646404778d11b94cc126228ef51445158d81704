@@ -22,6 +22,30 @@
       "revId": "1646404778d11b94cc126228ef51445158d81704",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_01dce5e2",
+        "filename": "tasks/setup.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-09-05T12:57:24Z",
+      "side": 1,
+      "message": "After some more tests, this also works for me.",
+      "parentUuid": "bab921fb_63573003",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "1646404778d11b94cc126228ef51445158d81704",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
