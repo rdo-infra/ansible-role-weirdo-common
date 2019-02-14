@@ -14,8 +14,7 @@
 #   under the License.
 #
 
-base_packages:
-  - deltarpm
+base_packages_common:
   - gettext
   - diffstat
   - doxygen
@@ -24,11 +23,22 @@ base_packages:
   - subversion
   - systemtap
   - git
-  - python-setuptools
   - wget
   - redhat-lsb-core
+
+base_packages_nonrhel8:
+  - deltarpm
+  - python-setuptools
   - libselinux-python
   - yum-plugin-priorities
+
+base_packages_rhel8:
+  - python3-libselinux
+  - python3-setuptools
+
+base_packages: "{% if (ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS') and ansible_distribution_major_version|int > 7 %}\
+                    {{ base_packages_common + base_packages_rhel8 }}\
+                    {% else %}{{ base_packages_common + base_packages_nonrhel8 }}{% endif %}"
 
 debug_packages:
   - net-tools
