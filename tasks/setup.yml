@@ -28,6 +28,22 @@
   retries: "3"
   delay: "20"
 
+- name: Install base packages when not running on CentOS/RHEL 8
+  package:
+    name: "{{ base_packages_nonrhel8 }}"
+    state: "present"
+  retries: "3"
+  delay: "20"
+  when: not((ansible_distribution == "RedHat" or ansible_distribution == "CentOS") and ansible_distribution_major_version > '7')
+
+- name: Install base packages when running on CentOS/RHEL 8
+  package:
+    name: "{{ base_packages_rhel8 }}"
+    state: "present"
+  retries: "3"
+  delay: "20"
+  when: (ansible_distribution == "RedHat" or ansible_distribution == "CentOS") and ansible_distribution_major_version > '7'
+
 - name: Install debug packages
   package:
     name: "{{ debug_packages }}"
