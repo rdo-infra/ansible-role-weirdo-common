@@ -21,6 +21,12 @@
   retries: "3"
   delay: "20"
 
+- name: Complete base packages list depending on distro version
+  set_fact:
+    base_packages: "{% if (ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS') and ansible_distribution_major_version|int > 7 %}\
+                    {{ base_packages + base_packages_rhel8 }}\
+                    {% else %}{{ base_packages + base_packages_nonrhel8 }}{% endif %}"
+
 - name: Install base packages
   package:
     name: "{{ base_packages }}"
