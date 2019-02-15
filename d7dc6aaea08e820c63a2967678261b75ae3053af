@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f355f93_a07f39be",
+        "filename": "defaults/main.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2019-02-15T21:36:09Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "revId": "d7dc6aaea08e820c63a2967678261b75ae3053af",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
