@@ -16,6 +16,24 @@
       "revId": "d7dc6aaea08e820c63a2967678261b75ae3053af",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3040042_e3e8c7d0",
+        "filename": "defaults/main.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2019-02-18T10:37:07Z",
+      "side": 1,
+      "message": "I guess we could live without it (deltarpm doesn\u0027t provide such a big advantage), but it was already present, so I wanted to keep it just in case.",
+      "parentUuid": "3f355f93_a07f39be",
+      "revId": "d7dc6aaea08e820c63a2967678261b75ae3053af",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
