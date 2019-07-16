@@ -30,6 +30,12 @@
         - "fedora-updates.repo"
       when: ansible_distribution == "Fedora"
 
+    - name: Add puppet6 repo in fedora
+      get_url:
+        url: "https://copr.fedorainfracloud.org/coprs/amoralej/puppet6/repo/fedora-28/amoralej-puppet6-fedora-28.repo"
+        dest: "/etc/yum.repos.d/"
+      when: ansible_distribution == "Fedora"
+
     - name: Remove excludes from /etc/dnf/dnf.conf (Fedora)
       lineinfile:
         path: /etc/dnf/dnf.conf
