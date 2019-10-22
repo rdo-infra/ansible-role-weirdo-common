@@ -107,3 +107,9 @@ debug_commands:
     command: "uname -a"
   rdo-trunk-deps-end:
     command: "repoquery --plugins --disablerepo='*' --enablerepo='delorean' -enablerepo='delorean*testing' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
+
+cirros_download: "https://download.cirros-cloud.net"
+
+cirros_versions:
+  - 0.3.5
+  - 0.4.0

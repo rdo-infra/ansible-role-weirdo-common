@@ -67,3 +67,22 @@
     dest: "/etc/hosts"
     line: "127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }}"
     state: present
+
+# Cache cirros images locally to be consumed by p-o-i or packstack
+- name: create /root/cache/files directory
+  file:
+    state: directory
+    path: /root/cache/files
+    recurse: yes
+
+- name: Download UEC cirros images to be used by p-o-i and packstack
+  get_url:
+    url: "{{ cirros_download }}/{{ item }}/cirros-{{ item }}-{{ ansible_architecture }}-uec.tar.gz"
+    dest: /root/cache/files
+  with_items: "{{ cirros_versions }}"
+
+- name: Download cirros images to be used by p-o-i and packstack
+  get_url:
+    url: "{{ cirros_download }}/{{ item }}/cirros-{{ item }}-{{ ansible_architecture }}-disk.img"
+    dest: /root/cache/files
+  with_items: "{{ cirros_versions }}"
