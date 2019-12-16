@@ -30,6 +30,16 @@
         - "fedora-updates.repo"
       when: ansible_distribution == "Fedora"
 
+    - name: Remove EPEL repos (CentOS8)
+      file:
+        path: "/etc/yum.repos.d/{{ item }}"
+        state: absent
+      with_items:
+        - "epel.repo"
+        - "epel-playground.repo"
+        - "epel-testing.repo"
+      when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"
+
     - name: Remove excludes from /etc/dnf/dnf.conf (Fedora)
       lineinfile:
         path: /etc/dnf/dnf.conf
