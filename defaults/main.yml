@@ -45,7 +45,10 @@ debug_packages:
   - lsof
   - sysstat
   - psmisc
-  - yum-utils
+  - "{{ ansible_pkg_mgr }}-utils"
+
+repoquery_base: "repoquery {% if ansible_distribution == 'CentOS' and ansible_distribution_major_version|int < 8 %}--plugins{% else %}{% endif %}"
+repoquery_cmd: "{{ repoquery_base }} --disablerepo='*' --enablerepo='delorean' --enablerepo='delorean*testing' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
 
 # Delorean repository (OpenStack) release
 openstack_release: "master"
@@ -100,10 +103,10 @@ debug_commands:
   sysctl:
     command: "sysctl -a"
   repolist:
-    command: "yum repolist -v"
+    command: "{{ ansible_pkg_mgr }} repolist -v"
   rpm_packages:
     command: "rpm -qa | sort"
   uname:
     command: "uname -a"
   rdo-trunk-deps-end:
-    command: "repoquery --plugins --disablerepo='*' --enablerepo='delorean' -enablerepo='delorean*testing' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g'"
+    command: "{{ repoquery_cmd }}"
