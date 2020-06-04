@@ -73,7 +73,7 @@
 
     - name: Ensure the stable repository is enabled if it's available
       command: yum-config-manager --enable openstack-{{ openstack_release }}
-      when: stable_available|success
+      when: stable_available is success
   vars:
     task: "tasks/repositories/stable.yml"
   rescue:
