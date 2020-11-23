@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acbfddc6_7c646a47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2020-11-23T08:56:49Z",
+      "side": 1,
+      "message": "nitpick alert: technically not a regex, it\u0027s wildcard",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "232fbd253dbe855d6bcf410dded28e7c5b1ca9e0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
