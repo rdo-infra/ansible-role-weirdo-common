@@ -21,6 +21,14 @@
   retries: "3"
   delay: "20"
 
+- name: Enable powertools repo on CentOS8
+  # FIXME(jcapitao): Remove this task when CentOS 8 repoids change is included
+  # in new CentOS 8 (8.3) based image [1].
+  # [1] https://review.opendev.org/c/openstack/diskimage-builder/+/765963
+  shell: "sudo dnf config-manager --enable powertools"
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"
+  changed_when: False
+
 - name: Install base packages
   package:
     name: "{{ base_packages }}"
