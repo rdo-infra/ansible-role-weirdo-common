@@ -21,6 +21,11 @@
   retries: "3"
   delay: "20"
 
+- name: Enable powertools repo on CentOS8
+  shell: "sudo dnf config-manager --enable powertools"
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8"
+  changed_when: False
+
 - name: Install base packages
   package:
     name: "{{ base_packages }}"
