@@ -19,6 +19,7 @@
       package:
         name: "{{ item }}"
         state: "present"
+        disable_gpg_check: True
       retries: "3"
       delay: "20"
       with_items: "{{ stable_repositories.split(',') }}"
