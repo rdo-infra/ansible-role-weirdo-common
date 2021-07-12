@@ -22,12 +22,18 @@
         disable_gpg_check: True
       retries: "3"
       delay: "20"
+      register: _setup_stable_repos
+      until: _setup_stable_repos is success
       with_items: "{{ stable_repositories.split(',') }}"
 
     - name: Setup custom repositories
       get_url:
         url: "{{ item }}"
         dest: "/etc/yum.repos.d/"
+      retries: "3"
+      delay: "20"
+      register: _setup_custom_repos
+      until: _setup_custom_repos is success
       with_items: "{{ trunk_repositories_list }}"
 
     - name: Remove Fedora base repos
