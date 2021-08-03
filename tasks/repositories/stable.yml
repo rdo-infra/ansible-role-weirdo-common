@@ -79,5 +79,4 @@
     task: "tasks/repositories/stable.yml"
   rescue:
     - name: Failure occurred, executing rescue
-      include: roles/common/tasks/rescue.yml
-      static: no
+      include_tasks: roles/common/tasks/rescue.yml

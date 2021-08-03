@@ -38,19 +38,16 @@
     # Trunk always has testing enabled by default
     # -pending can be optionally enabled
     - name: Including trunk repository setup
-      include: "repositories/trunk.yml"
+      include_tasks: "repositories/trunk.yml"
       when: not stable_repositories
-      static: no
 
     # Stable can be by itself
     # -pending or -testing can optionally be enabled
     - name: Including stable repository setup
-      include: "repositories/stable.yml"
+      include_tasks: "repositories/stable.yml"
       when: stable_repositories != false
-      static: no
   vars:
     task: "tasks/repositories.yml"
   rescue:
     - name: Failure occurred, executing rescue
-      include: roles/common/tasks/rescue.yml
-      static: no
+      include_tasks: roles/common/tasks/rescue.yml

@@ -37,6 +37,8 @@
 
 - name: set fact
   shell: /usr/bin/rpm -qa sysstat --queryformat %{VERSION}
+  args:
+    warn: false
   register: sysstat_version
 
 - name: Run sysstat every minute instead of every 10 minutes (systemd)
@@ -44,14 +46,14 @@
     dest: "/usr/lib/systemd/system/sysstat-collect.timer"
     regexp: '10'
     replace: "1"
-  when: "{{ sysstat_version.stdout is version('10.3.1', '>=') }} "
+  when: sysstat_version.stdout is version('10.3.1', '>=')
 
 - name: Run sysstat every minute instead of every 10 minutes (cron)
   replace:
     dest: "/etc/cron.d/sysstat"
     regexp: '^\*\/10.*sa1 1 1'
     replace: "* * * * * root /usr/lib64/sa/sa1 1 1"
-  when: "{{ sysstat_version.stdout is version('10.3.1', '<') }} "
+  when: sysstat_version.stdout is version('10.3.1', '<')
 
 - name: Enable sysstat
   service:

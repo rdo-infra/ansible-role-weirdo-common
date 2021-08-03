@@ -14,10 +14,8 @@
 #   under the License.
 #
 
-- include: repositories.yml
+- include_tasks: repositories.yml
   when: action is not defined
-  static: no
 
-- include: setup.yml
+- include_tasks: setup.yml
   when: action is not defined
-  static: no
