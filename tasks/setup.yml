@@ -14,6 +14,11 @@
 #   under the License.
 #
 
+- name: Clean dnf/yum cache
+  shell: "{{ ansible_pkg_mgr }} clean all"
+  args:
+    warn: false
+
 - name: Update packages
   package:
     name: "*"
