@@ -24,21 +24,27 @@ base_packages_common:
   - systemtap
   - git
   - wget
-  - redhat-lsb-core
 
-base_packages_nonrhel8:
+base_packages_rhel7:
   - deltarpm
   - python-setuptools
   - libselinux-python
   - yum-plugin-priorities
+  - redhat-lsb-core
 
 base_packages_rhel8:
   - python3-libselinux
   - python3-setuptools
+  - redhat-lsb-core
 
-base_packages: "{% if (ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS') and ansible_distribution_major_version|int > 7 %}\
+base_packages_rhel9:
+  - rubygem-rexml
+
+base_packages: "{% if (ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS') and ansible_distribution_major_version|int == 7 %}\
+                    {{ base_packages_common + base_packages_rhel7 }}\
+                {% elif (ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS') and ansible_distribution_major_version|int == 8 %}\
                     {{ base_packages_common + base_packages_rhel8 }}\
-                    {% else %}{{ base_packages_common + base_packages_nonrhel8 }}{% endif %}"
+                    {% else %}{{ base_packages_common + base_packages_rhel9 }}{% endif %}"
 
 debug_packages:
   - net-tools
