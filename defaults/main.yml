@@ -24,7 +24,6 @@ base_packages_common:
   - systemtap
   - git
   - wget
-  - redhat-lsb-core
 
 base_packages_nonrhel8:
   - deltarpm
