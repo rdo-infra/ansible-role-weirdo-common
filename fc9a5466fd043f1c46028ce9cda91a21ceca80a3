@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5d7f297_983707a3",
+        "filename": "defaults/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2021-12-07T05:30:29Z",
+      "side": 1,
+      "message": "i think should also add following explicitly to rhel9 too\n  - python3-libselinux\n  - python3-setuptools",
+      "revId": "fc9a5466fd043f1c46028ce9cda91a21ceca80a3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
