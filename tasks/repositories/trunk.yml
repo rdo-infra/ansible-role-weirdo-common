@@ -21,6 +21,15 @@
         dest: "/etc/yum.repos.d/"
       with_items: "{{ trunk_repositories_list }}"
 
+    - name: Use mirrors for SIGS repos
+      shell: |
+        if [ -f /etc/ci/mirror_info.sh ]; then
+          source /etc/ci/mirror_info.sh
+          sed -i -e "s|https://trunk.rdoproject.org|${NODEPOOL_RDO_PROXY}|g" /etc/yum.repos.d/*.repo
+          sed -i -e "s|http://mirror.centos.org|${NODEPOOL_CENTOS_MIRROR}|g" /etc/yum.repos.d/*.repo
+          sed -i -e "s|http://mirror.stream.centos.org|${NODEPOOL_CENTOS_MIRROR}|g" /etc/yum.repos.d/*.repo
+        fi
+
     - name: Remove Fedora base repos
       file:
         path: "/etc/yum.repos.d/{{ item }}"
