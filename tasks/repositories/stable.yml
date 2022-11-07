@@ -56,11 +56,11 @@
 
     - name: Enable the testing repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
-      when: testing_repository or pending_repository
+      when: testing_repository | bool or pending_repository | bool
 
     - name: Enable the pending repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-pending
-      when: pending_repository
+      when: pending_repository | bool
 
     - name: Disable the mirror of RDO Trunk tested repository
       command: yum-config-manager --disable rdo-trunk-{{ openstack_release }}-tested\*
