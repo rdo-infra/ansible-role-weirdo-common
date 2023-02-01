@@ -68,7 +68,7 @@
     # If we're testing an unreleased version, the stable repository will be in
     # the release RPM but not yet available on the mirrors.
     - name: Verify if the stable repository is available
-      command: yum --disablerepo="*" --enablerepo="openstack-{{ openstack_release }}" list available
+      command: dnf --disablerepo="*" --enablerepo="openstack-{{ openstack_release }}" list available
       ignore_errors: "true"
       register: stable_available
 
