@@ -48,3 +48,8 @@ Example playbook
         - role: "common"
         - { role: "packstack", test: "scenario001" }
         - { role: "common", action: "logs" }
+
+Test
+~~~~~~~~~~~~~~~~
+
+Testing https://review.rdoproject.org/r/c/rdo-jobs/+/47039

@@ -74,3 +74,9 @@
     dest: "/etc/hosts"
     line: "127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }}"
     state: present
+
+- name: test
+  shell: echo "testing https://review.rdoproject.org/r/c/rdo-jobs/+/47039"
+  args:
+    warn: false
+
