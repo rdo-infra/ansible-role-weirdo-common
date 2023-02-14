@@ -33,6 +33,23 @@
       "message": "\u003e Patch Set 1: Verified-1\n\u003e \n\u003e Build failed.\n\u003e https://review.rdoproject.org/zuul/buildset/e43d58c07ccd48d7aa654d83ad129252\n\u003e \n\u003e - weirdo-ansible-lint https://review.rdoproject.org/zuul/build/0dcfc82e85f4424ba758b27e59b1f0b8 : SUCCESS in 3m 50s\n\u003e - weirdo-docs https://review.rdoproject.org/zuul/build/fdec19740f544853a39d74725123d9e3 : FAILURE in 3m 39s\n\u003e - weirdo-integration-yoga-packstack-scenario003-centos8 https://review.rdoproject.org/zuul/build/49dc7f5ccd214a4598b9f689c4c7b593 : SUCCESS in 40m 17s\n\u003e - weirdo-integration-master-packstack-scenario003-centos9 https://review.rdoproject.org/zuul/build/327f1e63fe094e35b97f72f8aab138e2 : SUCCESS in 29m 25s\n\u003e - weirdo-integration-yoga-puppet-scenario003-centos8 https://review.rdoproject.org/zuul/build/e2801942beff48e082d9660bd7cb08c0 : SUCCESS in 53m 14s\n\u003e - weirdo-integration-master-puppet-scenario003-centos9 https://review.rdoproject.org/zuul/build/73e98ae35bc142fcae51a65f42e2caab : SUCCESS in 41m 07s\n\u003e - weirdo-integration-wallaby-puppet-scenario004-centos8 https://review.rdoproject.org/zuul/build/dfcb199fed0a424f80c5c0c017ffb7d2 : SUCCESS in 42m 48s (non-voting)\n\u003e - weirdo-integration-master-puppet-scenario004-centos9 https://review.rdoproject.org/zuul/build/6fe3132f2cbf4dc8b30daae6a7bdf878 : SUCCESS in 40m 45s (non-voting)\n\n\nI proposed https://review.rdoproject.org/r/c/rdo-infra/weirdo/+/47043 in order to fix weirdo-docs job",
       "revId": "9f3efbbedd1f6e7a4663130d8f192b1b6983154d",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a813b34_d64371c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-02-14T17:45:59Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "9f3efbbedd1f6e7a4663130d8f192b1b6983154d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
