@@ -22,6 +22,30 @@
       },
       "revId": "d77681c5650ffae584b5c5e2168f1a7d2b66500e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce8f978_bd2a780a",
+        "filename": "tasks/setup.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-03-09T16:11:55Z",
+      "side": 0,
+      "message": "Good point, I submitted a follow-up patch https://review.rdoproject.org/r/c/rdo-infra/ansible-role-weirdo-common/+/47629",
+      "parentUuid": "a9c56d5a_e686dde9",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "d77681c5650ffae584b5c5e2168f1a7d2b66500e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
