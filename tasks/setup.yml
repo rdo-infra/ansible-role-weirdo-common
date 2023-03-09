@@ -16,8 +16,6 @@
 
 - name: Clean dnf/yum cache
   shell: "{{ ansible_pkg_mgr }} clean all"
-  args:
-    warn: false
 
 - name: Update packages
   package:
@@ -42,8 +40,6 @@
 
 - name: set fact
   shell: /usr/bin/rpm -qa sysstat --queryformat %{VERSION}
-  args:
-    warn: false
   register: sysstat_version
 
 - name: Run sysstat every minute instead of every 10 minutes (systemd)
