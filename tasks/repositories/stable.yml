@@ -58,6 +58,14 @@
       command: yum-config-manager --enable openstack-{{ openstack_release }}-testing
       when: testing_repository | bool or pending_repository | bool
 
+    - name: Disable the stable repository to consume packages from testing repo only
+      command: yum-config-manager --disable openstack-{{ openstack_release }}
+      when: testing_repository | bool
+
+    - name: Enable GPG check for testing repo
+      shell: |
+        sed -i -e "s|gpgcheck=0|gpgcheck=1|g" /etc/yum.repos.d/rdo-testing.repo
+
     - name: Enable the pending repository if it should be enabled
       command: yum-config-manager --enable openstack-{{ openstack_release }}-pending
       when: pending_repository | bool
