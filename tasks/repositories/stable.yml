@@ -75,6 +75,12 @@
     - name: Ensure the stable repository is enabled if it's available
       command: yum-config-manager --enable openstack-{{ openstack_release }}
       when: stable_available is success
+
+    - name: Enable the EPEL repository for Ceph with low priority
+      shell: "rpm -q rdo-release && dnf config-manager --set-enabled epel-low-priority"
+      ignore_errors: true
+      register: is_installed
+      failed_when: is_installed.rc not in [0, 1]
   vars:
     task: "tasks/repositories/stable.yml"
   rescue:
