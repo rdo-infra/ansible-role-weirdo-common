@@ -16,6 +16,23 @@
       "message": "Tested with https://review.rdoproject.org/r/c/rdoinfo/+/51118",
       "revId": "bf2fa3fe407c4b00d5d618184e251be83227b1f3",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f36577_983e2aaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-12-19T15:12:54Z",
+      "side": 1,
+      "message": "Tested with https://review.rdoproject.org/r/c/rdoinfo/+/51118",
+      "revId": "bf2fa3fe407c4b00d5d618184e251be83227b1f3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
