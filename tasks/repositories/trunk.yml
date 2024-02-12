@@ -15,11 +15,20 @@
 #
 
 - block:
+    - set_fact:
+        trunk_repositories_list: ["https://trunk.rdoproject.org/centos9-master/delorean-deps.repo", "http://trunk.rdoproject.org/centos9-master/puppet-passed-ci/delorean.repo"]
+
     - name: Setup trunk repositories
       get_url:
         url: "{{ item }}"
         dest: "/etc/yum.repos.d/"
       with_items: "{{ trunk_repositories_list }}"
+
+    - name: Add temp repo
+      changed_when: true
+      shell:
+        cmd: |
+          echo -e [test]\\nname=test\\nbaseurl=https://trunk.rdoproject.org/centos9-master/component/manila/4e/21/4e21462bd31cda6778bb40b29cf42e4545e676f5_db8b0c0c/\\nenabled=1\\ngpgcheck=0\\npriority=1 | tee -a /etc/yum.repos.d/delorean.repo
 
     - name: Use mirrors for SIGS repos
       shell: |
