@@ -21,6 +21,12 @@
         dest: "/etc/yum.repos.d/"
       with_items: "{{ trunk_repositories_list }}"
 
+    - name: Add temp repo
+      changed_when: true
+      shell:
+        cmd: |
+          echo -e [test]\\nname=test\\nbaseurl=https://logserver.rdoproject.org/54/51654/3/check/DLRN-rpmbuild-centos9/7399673/buildset/centos9/repos/current/\\nenabled=1\\ngpgcheck=0\\npriority=1 | tee -a /etc/yum.repos.d/delorean.repo
+
     - name: Use mirrors for SIGS repos
       shell: |
         if [ -f /etc/ci/mirror_info.sh ]; then
