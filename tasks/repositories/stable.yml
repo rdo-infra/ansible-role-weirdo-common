@@ -65,22 +65,20 @@
     - name: Disable the mirror of RDO Trunk tested repository
       command: yum-config-manager --disable rdo-trunk-{{ openstack_release }}-tested\*
 
-    # If we're testing an unreleased version, the stable repository will be in
-    # the release RPM but not yet available on the mirrors.
-    - name: Verify if the stable repository is available
-      command: dnf --disablerepo="*" --enablerepo="openstack-{{ openstack_release }}" list available
-      ignore_errors: "true"
-      register: stable_available
-
-    - name: Ensure the stable repository is enabled if it's available
-      command: yum-config-manager --enable openstack-{{ openstack_release }}
-      when: stable_available is success
-
     - name: Enable the EPEL repository for Ceph with low priority
-      shell: "rpm -q rdo-release && dnf config-manager --set-enabled epel-low-priority"
-      ignore_errors: true
-      register: is_installed
-      failed_when: is_installed.rc not in [0, 1]
+      shell:
+        cmd: |
+          IS_CEPH_INSTALLED=$(rpm -qa | grep centos-release-ceph)
+          if [ -n ${IS_CEPH_INSTALLED} ]; then
+              dnf install -y 'dnf-command(config-manager)'
+              dnf config-manager --enable crb
+              dnf install -y epel-release
+              dnf config-manager --disable epel-next
+              dnf config-manager --disable epel-cisco-openh264
+              dnf config-manager --setopt epel.priority=100 --save epel
+              dnf config-manager --setopt epel.includepkgs="libarrow*,parquet*,python3-asyncssh,re2,python3-grpcio,grpc*,abseil*" --save epel
+          fi
+      changed_when: true
   vars:
     task: "tasks/repositories/stable.yml"
   rescue:
